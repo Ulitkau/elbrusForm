@@ -5,61 +5,61 @@ pluralize(null);
 const studentSchema = new Schema({
   email: {                        // почта
     type: String,
-    required: true
+    required: false
   },
   github: {                       // ссылка на гитхаб
     type: String,
-    required: true
+    required: false
   },
   firstName: {                    // имя
     type: String,
-    required: true
+    required: false
   },
   lastName: {                     // фамилия
     type: String,
-    required: true
+    required: false
   },
   number: {                       // номер телефона
     type: String,
-    required: true
+    required: false
   },
   social: {                       // ссылка на соцсети
     type: String,
-    required: true
+    required: false
   },
   closeContact: String,           // контакт близкого человека
   birthday: {                     // день рождения
     type: Date,
-    required: true
+    required: false
   },
   city: {                         // город
     type: String,
-    required: true
+    required: false
   },
   education: {                    // уровень образования
     type: String,
-    required: true
+    required: false
   },
   employmentBefore: {             // чем занимались до поступления
     type: String,
-    required: true
+    required: false
   },
   specialConditions: String,      // специальные условия по здоровью
-  reason: {                       // почему поступили
+  reason: [{                       // почему поступили
     type: String,
-    required: true
-  },
-  howKnow: {                      // как узнали о буткемпе
+    required: false
+  }],
+  howKnow: [{                      // как узнали о буткемпе
     type: String,
-    required: true
-  },
+    required: false
+  }],
   format: {                       // формат обучения
     type: String,
-    required: true
+    required: false
   },
   receiptDate: {                  // дата поступления
     type: Date,
-    required: true
+    required: false
   },
 },
 );
