@@ -29,7 +29,7 @@ const sessionConfig = {
   secret: 'elbrus_form',
   resave: true,
   saveUninitialized: false,
-  cookie: { expires: 600000 },
+  cookie: { expires: 1800000 },
 };
 
 app.use(session(sessionConfig));
