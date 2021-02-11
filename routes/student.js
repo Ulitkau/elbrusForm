@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const Student = require('../model/student');
+// const Admin = require('../model/admin');
+// const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
   res.render('students/start');
@@ -34,9 +36,17 @@ router.post('/students', async (req, res) => {
     receiptDate: req.body.receiptDate,
   });
 
+  // const hashedPasswords = await bcrypt.hash('12345', 10);
+
+
+  // const admin = new Admin({
+  //   login: 'kechko02@gmail.com',
+  //   password: hashedPasswords
+  // });
   console.log(newStudent);
   try {
     await newStudent.save();
+    await admin.save();
   } catch (error) {
     return res.render('error', {
       message: 'Не удалось добавить запись в базу данных.',
