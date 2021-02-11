@@ -17,8 +17,6 @@ router.get('/', (req, res) => {
 router.post('/students', async (req, res) => {
   const { login, password } = req.body;
   const adminUser = await Admin.findOne({ login });
-  console.log(adminUser);
-
   if (!adminUser || !(await bcrypt.compare(password, adminUser?.password))) {
     return res.redirect('/admin');
   }
@@ -38,7 +36,7 @@ router.get('/students', check, async (req, res) => {
       birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
-  return res.render('admin/studentList', { title: 'список студентов', students });
+  return res.render('admin/studentList', { students });
 })
 
 // return res.render('admin/login', { title: 'Вход' })
@@ -62,7 +60,7 @@ router.get('/students/sortByName/:direction', check, async (req, res) => {
       birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
-  res.render('admin/studentList', { title: 'список студентов', students: dataLastName });
+  res.render('admin/studentList', { students: dataLastName });
 });
 
 
@@ -83,7 +81,7 @@ router.get('/students/sortByDate/:direction', check, async (req, res) => {
       birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
-  res.render('admin/studentList', { title: 'список студентов', students: dataReceiptDate });
+  res.render('admin/studentList', { students: dataReceiptDate });
 });
 
 // sortByBirthday сортировка по дню рождения
@@ -103,28 +101,26 @@ router.get('/students/sortByBirthday/:direction', check, async (req, res) => {
       birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
-  res.render('admin/studentList', { title: 'список студентов', students: dataBirthday });
+  res.render('admin/studentList', { students: dataBirthday });
 });
 
 // вывод отдельной анкеты студента
 router.get('/students/select/:id', check, async (req, res) => {
-  const student = await Student.findById(req.params.id);
-  student = student.map((el) => {
-    return {
-      ...el,
-      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
-      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
-    };
-  });
-  res.render('admin/profileStudent', { student });
+  let student = [await Student.findById(req.params.id)];
+  console.log(student);
+  res.render('admin/profile', { student });
 });
 
-router.post('/students/filterByHowKnow', check, async (req, res) => {
-  const filterParams = req.body;
-  console.log(filterParams);
-  // const filterDB = await Student.find({ $and: [{ reason: 'Всегда мечтал(а) стать разработчиком' }, { reason: 'В IT много платят' }] });
-  // const filterDB = await Student.find().sort('lastName');
-  filterDB = await Student.find({howknow: req.body.value})
+router.post('/students/filterByKnow', check, async (req, res) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  let filterDB;
+  let know = req.body.howKnow;
+  if (know === 'Все' || know === undefined) {
+    filterDB = await Student.find().lean();
+  }
+  else {
+    filterDB = await Student.find({ howKnow: know }).lean();
+  }
   filterDB = filterDB.map((el) => {
     return {
       ...el,
@@ -132,16 +128,27 @@ router.post('/students/filterByHowKnow', check, async (req, res) => {
       birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
-  console.log(filterDB);
-  return res.render('admin/studentList', { title: 'список студентов', students: filterDB })
+  return res.render('admin/studentList', { students: filterDB })
 });
 
-router.post('/students/filterByReason', check, async (req, res) => {
-  const filterParams = req.body;
-  // const filterDB = await Student.find({ $and: [{ reason: 'Всегда мечтал(а) стать разработчиком' }, { reason: 'В IT много платят' }] });
-  // const filterDB = await Student.find().sort('lastName');
-  console.log(filterDB);
-  return res.render('admin/studentList', { title: 'список студентов', students: filterDB })
+router.post('/students/filterByFormat', check, async (req, res) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  let filterDB;
+  let format = req.body.format;
+  if (format === 'Все' || format === undefined) {
+    filterDB = await Student.find().lean();
+  }
+  else {
+    filterDB = await Student.find({ format }).lean();
+  }
+  filterDB = filterDB.map((el) => {
+    return {
+      ...el,
+      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
+    };
+  });
+  return res.render('admin/studentList', { students: filterDB })
 });
 
 module.exports = router;

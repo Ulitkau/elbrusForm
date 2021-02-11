@@ -12,24 +12,24 @@
           href="/admin/students/sortByBirthday/down"><i class="fas fa-caret-down"></i></a> Дата рождения</th>
       <th scope="col">Источник
         <form action="/admin/students/filterByKnow" method="POST">
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <select class="form-select form-select-sm" name="howKnow" aria-label=".form-select-sm example">
             <option selected>Все</option>
-            <option name="howKnow1" value="instagram">instagram</option>
-            <option name="howKnow2" value="facebook">facebook</option>
-            <option name="howKnow3" value="vkontakte">vkontakte</option>
-            <option name="howKnow4" value="google">google</option>
-            <option name="howKnow5" value="yandex">yandex</option>
-            <option name="howKnow6" value="статья">статья</option>
-            <option name="howKnow7" value="друзья">друзья</option>
-            <option name="howKnow8" value="АйтиБорода">АйтиБорода</option>
-            <option name="howKnow9" value="Другое">Другое</option>
+            <option value="instagram">Instagram</option>
+            <option value="facebook">Facebook</option>
+            <option value="vkontakte">Vkontakte</option>
+            <option value="google">Google</option>
+            <option value="yandex">Yandex</option>
+            <option value="статья">Статья</option>
+            <option value="друзья">Друзья</option>
+            <option value="АйтиБорода">АйтиБорода</option>
+            <option value="Другое">Другое</option>
           </select>
           <button type="submit" class="btn btn-success"><i class="far fa-share-square"></i></button>
         </form>
       </th>
       <th scope="col">Формат обучения
         <form action="/admin/students/filterByFormat" method="POST">
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <select class="form-select form-select-sm" name="format" aria-label=".form-select-sm example">
             <option selected>Все</option>
             <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
             <option value="JavaScript - Санкт-Петербург - очное">JavaScript - Санкт-Петербург - очное</option>
@@ -52,7 +52,7 @@
       <td>{{this.howKnow}}</td>
       <td>{{this.format}}</td>
       <td>
-        <form action="/admin/students/{{this._id}}" method="GET">
+        <form action="/admin/students/select/{{this._id}}" method="GET">
           <button type="submit" class="btn btn-success"><i class="fas fa-info"></i></button>
         </form>
       </td>
