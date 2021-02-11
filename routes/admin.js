@@ -6,11 +6,15 @@ const bcrypt = require('bcrypt');
 const check = require('../middleware/check')
 
 router.get('/', (req, res) => {
-  return res.render('admin/login');
+  if (req.session?.AdminID) {
+    return res.redirect('admin/students')
+  } else {
+    return res.render('admin/login');
+  }
 });
 
 // ручка обрабатывающая вход
-router.post('/', async (req, res) => {
+router.post('/students', async (req, res) => {
   const { login, password } = req.body;
   const adminUser = await Admin.findOne({ login });
   console.log(adminUser);
@@ -19,49 +23,105 @@ router.post('/', async (req, res) => {
     return res.redirect('/admin');
   }
 
-  const students = await Student.find();
-
-
   req.session.AdminID = adminUser._id;
+  return res.redirect('/admin/students');
+});
+
+
+router.get('/students', check, async (req, res) => {
+  let students = await Student.find().lean();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  students = students.map((el) => {
+    return {
+      ...el,
+      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+    };
+  });
   return res.render('admin/studentList', { title: 'список студентов', students });
 })
+
+// return res.render('admin/login', { title: 'Вход' })
 
 
 
 // sortByName сортировка по фамилии
-router.get('/sortByName/:direction', check, async (req, res) => {
-  const dataLastName = await Student.find().sort('lastName');
+router.get('/students/sortByName/:direction', check, async (req, res) => {
+  let dataLastName;
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  if (req.params.direction === 'upper') {
+    dataLastName = await Student.find().sort('lastName').lean();
+  }
+  else {
+    dataLastName = await Student.find().sort([['lastName', -1]]).lean();
+  }
+  dataLastName = dataLastName.map((el) => {
+    return {
+      ...el,
+      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+    };
+  });
   res.render('admin/studentList', { title: 'список студентов', students: dataLastName });
 });
 
 
 // sortByDate сортировка по дате поступления
-router.get('/sortByDate/:direction', check, async (req, res) => {
-  const dataReceiptDate = await Student.find().sort('receiptDate');
+router.get('/students/sortByDate/:direction', check, async (req, res) => {
+  let dataReceiptDate;
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  if (req.params.direction === 'upper') {
+    dataReceiptDate = await Student.find().sort('receiptDate').lean();
+  }
+  else {
+    dataReceiptDate = await Student.find().sort([['receiptDate', -1]]).lean();
+  }
+  dataReceiptDate = dataReceiptDate.map((el) => {
+    return {
+      ...el,
+      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+    };
+  });
   res.render('admin/studentList', { title: 'список студентов', students: dataReceiptDate });
 });
 
 // sortByBirthday сортировка по дню рождения
-router.get('/sortByBirthday/:direction', check, async (req, res) => {
-  const dataBirthday = await Student.find().sort('birthday');
+router.get('/students/sortByBirthday/:direction', check, async (req, res) => {
+  let dataBirthday;
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  if (req.params.direction === 'upper') {
+    dataBirthday = await Student.find().sort('birthday').lean();
+  }
+  else {
+    dataBirthday = await Student.find().sort([['birthday', -1]]).lean();
+  }
+  dataBirthday = dataBirthday.map((el) => {
+    return {
+      ...el,
+      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+    };
+  });
   res.render('admin/studentList', { title: 'список студентов', students: dataBirthday });
 });
 
 // вывод отдельной анкеты студента
-router.get('/students/:id', check, async (req, res) => {
+router.get('/students/select/:id', check, async (req, res) => {
   const student = await Student.findById(req.params.id);
   res.render('admin/profileStudent', { student });
 });
 
-router.get('/filterByHowKnow', check, async (req, res) => {
+router.post('/students/filterByHowKnow', check, async (req, res) => {
   const filterParams = req.body;
+  console.log(filterParams);
   // const filterDB = await Student.find({ $and: [{ reason: 'Всегда мечтал(а) стать разработчиком' }, { reason: 'В IT много платят' }] });
   // const filterDB = await Student.find().sort('lastName');
   console.log(filterDB);
   return res.render('admin/studentList', { title: 'список студентов', students: filterDB })
 });
 
-router.get('/filterByReason', check, async (req, res) => {
+router.post('/students/filterByReason', check, async (req, res) => {
   const filterParams = req.body;
   // const filterDB = await Student.find({ $and: [{ reason: 'Всегда мечтал(а) стать разработчиком' }, { reason: 'В IT много платят' }] });
   // const filterDB = await Student.find().sort('lastName');
