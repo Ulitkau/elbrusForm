@@ -35,7 +35,7 @@ router.get('/students', check, async (req, res) => {
     return {
       ...el,
       receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
-      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
   return res.render('admin/studentList', { title: 'список студентов', students });
@@ -59,7 +59,7 @@ router.get('/students/sortByName/:direction', check, async (req, res) => {
     return {
       ...el,
       receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
-      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
   res.render('admin/studentList', { title: 'список студентов', students: dataLastName });
@@ -80,7 +80,7 @@ router.get('/students/sortByDate/:direction', check, async (req, res) => {
     return {
       ...el,
       receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
-      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
   res.render('admin/studentList', { title: 'список студентов', students: dataReceiptDate });
@@ -100,7 +100,7 @@ router.get('/students/sortByBirthday/:direction', check, async (req, res) => {
     return {
       ...el,
       receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
-      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
     };
   });
   res.render('admin/studentList', { title: 'список студентов', students: dataBirthday });
@@ -109,6 +109,13 @@ router.get('/students/sortByBirthday/:direction', check, async (req, res) => {
 // вывод отдельной анкеты студента
 router.get('/students/select/:id', check, async (req, res) => {
   const student = await Student.findById(req.params.id);
+  student = student.map((el) => {
+    return {
+      ...el,
+      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
+    };
+  });
   res.render('admin/profileStudent', { student });
 });
 
@@ -117,6 +124,14 @@ router.post('/students/filterByHowKnow', check, async (req, res) => {
   console.log(filterParams);
   // const filterDB = await Student.find({ $and: [{ reason: 'Всегда мечтал(а) стать разработчиком' }, { reason: 'В IT много платят' }] });
   // const filterDB = await Student.find().sort('lastName');
+  filterDB = await Student.find({howknow: req.body.value})
+  filterDB = filterDB.map((el) => {
+    return {
+      ...el,
+      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
+      birthday: new Date(el.birthday).toLocaleString('ru-RU', options),
+    };
+  });
   console.log(filterDB);
   return res.render('admin/studentList', { title: 'список студентов', students: filterDB })
 });
