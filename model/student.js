@@ -3,65 +3,84 @@ const { Schema, model, pluralize } = require('mongoose');
 pluralize(null);
 
 const studentSchema = new Schema({
-  email: {                        // почта
+  email: {
+    // почта
     type: String,
-    required: false
+    required: false,
   },
-  github: {                       // ссылка на гитхаб
+  github: {
+    // ссылка на гитхаб
     type: String,
-    required: false
+    required: false,
   },
-  firstName: {                    // имя
+  firstName: {
+    // имя
     type: String,
-    required: false
+    required: false,
   },
-  lastName: {                     // фамилия
+  lastName: {
+    // фамилия
     type: String,
-    required: false
+    required: false,
   },
-  number: {                       // номер телефона
+  number: {
+    // номер телефона
     type: String,
-    required: false
+    required: false,
   },
-  social: {                       // ссылка на соцсети
+  social: {
+    // ссылка на соцсети
     type: String,
-    required: false
+    required: false,
   },
-  closeContact: String,           // контакт близкого человека
-  birthday: {                     // день рождения
+  closeContact: String, // контакт близкого человека
+  birthday: {
+    // день рождения
     type: Date,
-    required: false
+    required: false,
   },
-  city: {                         // город
+  city: {
+    // город
     type: String,
-    required: false
+    required: false,
   },
-  education: {                    // уровень образования
+  education: {
+    // уровень образования
     type: String,
-    required: false
+    required: false,
   },
-  employmentBefore: {             // чем занимались до поступления
+  employmentBefore: {
+    // чем занимались до поступления
     type: String,
-    required: false
+    required: false,
   },
-  specialConditions: String,      // специальные условия по здоровью
-  reason: [{                       // почему поступили
+  specialConditions: String, // специальные условия по здоровью
+  reason: [
+    {
+      // почему поступили
+      type: String,
+      required: false,
+    },
+  ],
+  howKnow: [
+    {
+      // как узнали о буткемпе
+      type: String,
+      required: false,
+    },
+  ],
+  format: {
+    // формат обучения
     type: String,
-    required: false
-  }],
-  howKnow: [{                      // как узнали о буткемпе
-    type: String,
-    required: false
-  }],
-  format: {                       // формат обучения
-    type: String,
-    required: false
+    required: false,
   },
-  receiptDate: {                  // дата поступления
+  receiptDate: {
+    // дата поступления
     type: Date,
-    required: false
+    required: false,
   },
-},
-);
+});
 
 module.exports = model('students', studentSchema);
+
+
