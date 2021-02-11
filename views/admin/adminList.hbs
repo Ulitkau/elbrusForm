@@ -2,33 +2,22 @@
   <thead>
     <tr>
       {{!-- <th scope="col">#</th> --}}
-      <th scope="col">Picture</th>
-      <th scope="col">Title</th>
-      <th scope="col">Media</th>
-      <th scope="col">Author</th>
-      <th scope="col">Like</th>
-      <th scope="col">Likes</th>
+      <th scope="col">Фамилия, Имя</th>
+      <th scope="col">Дата старта</th>
+      <th scope="col">Дата рождения</th>
+      <th scope="col">Источник</th>
+      <th scope="col">Формат обучения</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       {{#each students}}
       {{!-- <th scope="row">{{}}</th> --}}
-      <td>
-        <div class="picsound">
-          <img src={{this.picture}} alt="1">
-        </div>
-      </td>
-      <td>{{this.author.username}}</td>
-      <td>
-        <audio controls src={{this.source}}>
-          Your browser does not support the
-          <code>audio</code> element.
-        </audio>
-      </td>
-      <td>{{this.author.username}}</td>
-      <td>false</td>
-      <td>{{this.likes.length}}</td>
+      <td>{{this.lastName}}, {{this.firstName}}</td>
+      <td>{{this.receiptDate}}</td>
+       <td>{{this.birthday}}</td>
+      <td>{{this.howKnow}}</td>
+      <td>{{this.format}}</td>
     </tr>
     {{/each}}
   </tbody>
