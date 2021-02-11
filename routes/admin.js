@@ -2,7 +2,6 @@ const router = require('express').Router();
 const Admin = require('../model/admin');
 const Student = require('../model/student');
 const bcrypt = require('bcrypt');
-const Student = require('../model/student');
 
 router.get('/', (req, res) => {
 
@@ -24,8 +23,9 @@ router.post('/', async (req, res) => {
 
 
   req.session.AdminID = adminUser._id;
-  return res.render('admin/adminList', { title: 'список студентов', students });
 
+  return res.render('admin/adminList', { title: 'список студентов', students });
+});
 
 router.get('/filterbyhowknow', async (req, res) => {
   const filterParams = req.body;

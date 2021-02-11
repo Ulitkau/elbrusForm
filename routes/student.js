@@ -46,7 +46,7 @@ router.post('/students', async (req, res) => {
   console.log(newStudent);
   try {
     await newStudent.save();
-    await admin.save();
+    // await admin.save();
   } catch (error) {
     return res.render('error', {
       message: 'Не удалось добавить запись в базу данных.',
