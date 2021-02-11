@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
@@ -44,9 +45,7 @@ app.use('/admin', adminRouter);
 app.listen(port, () => {
   console.log(`Сервер успешно запущен на порту ${port}.`);
 
-  const connectionAddress = process.env.DATABASE_CONNECTION_ADDRESS ?? 'mongodb://localhost:27017/elbrusFormDb';
-
-  connect(connectionAddress, {
+  connect(`mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@${process.env.DB_CONNECTION_ADDRESS}/elbrusFormDb?${process.env.DB_CONNECTION_OPTIONS}`, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
