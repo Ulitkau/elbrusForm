@@ -2,15 +2,15 @@
   <thead>
     <tr>
       {{!-- <th scope="col">#</th> --}}
-      <th scope="col"><a href="/admin/sortByName/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByName/down"><i
-            class="fas fa-caret-down"></i></a> Фамилия,
+      <th scope="col"><a href="/admin/students/sortByName/upper"><i class="fas fa-caret-up"></i></a> <a
+          href="/admin/students/sortByName/down"><i class="fas fa-caret-down"></i></a> Фамилия,
         Имя</th>
-      <th scope="col"><a href="/admin/sortByDate/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByDate/down"><i
-            class="fas fa-caret-down"></i></a> Дата старта</th>
-      <th scope="col"><a href="/admin/sortByBirthday/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByBirthday/down"><i
-            class="fas fa-caret-down"></i></a> Дата рождения</th>
+      <th scope="col"><a href="/admin/students/sortByDate/upper"><i class="fas fa-caret-up"></i></a> <a
+          href="/admin/students/sortByDate/down"><i class="fas fa-caret-down"></i></a> Дата старта</th>
+      <th scope="col"><a href="/admin/students/sortByBirthday/upper"><i class="fas fa-caret-up"></i></a> <a
+          href="/admin/students/sortByBirthday/down"><i class="fas fa-caret-down"></i></a> Дата рождения</th>
       <th scope="col">Источник
-        <form action="/admin/filterByKnow" method="POST">
+        <form action="/admin/students/filterByKnow" method="POST">
           <select class="form-select form-select-sm" aria-label=".form-select-sm example">
             <option selected>Все</option>
             <option name="howKnow1" value="instagram">instagram</option>
@@ -26,7 +26,7 @@
         </form>
       </th>
       <th scope="col">Формат обучения
-        <form action="/admin/filterByFormat" method="POST">
+        <form action="/admin/students/filterByFormat" method="POST">
           <select class="form-select form-select-sm" aria-label=".form-select-sm example">
             <option selected>Все</option>
             <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
