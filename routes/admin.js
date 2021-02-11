@@ -29,20 +29,20 @@ router.post('/', async (req, res) => {
 
 
 // sortByName сортировка по фамилии
-router.get('/sortByName', check, async (req, res) => {
+router.get('/sortByName/:direction', check, async (req, res) => {
   const dataLastName = await Student.find().sort('lastName');
   res.render('admin/studentList', { title: 'список студентов', students: dataLastName });
 });
 
 
 // sortByDate сортировка по дате поступления
-router.get('/sortByDate', check, async (req, res) => {
+router.get('/sortByDate/:direction', check, async (req, res) => {
   const dataReceiptDate = await Student.find().sort('receiptDate');
   res.render('admin/studentList', { title: 'список студентов', students: dataReceiptDate });
 });
 
 // sortByBirthday сортировка по дню рождения
-router.get('/sortByBirthday', check, async (req, res) => {
+router.get('/sortByBirthday/:direction', check, async (req, res) => {
   const dataBirthday = await Student.find().sort('birthday');
   res.render('admin/studentList', { title: 'список студентов', students: dataBirthday });
 });
