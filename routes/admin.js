@@ -3,7 +3,7 @@ const Admin = require('../model/admin');
 const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
-  return res.render('login', { title: 'Вход' });
+  return res.render('admin/login', { title: 'Вход' });
 });
 
 // ручка обрабатывающая вход
@@ -17,8 +17,10 @@ router.post('/', async (req, res) => {
 
   req.session.AdminID = adminUser._id;
 
-  return res.render('studentList', { title: 'список студентов' });
+  return res.render('admin/studentList', { title: 'список студентов' });
 
 });
+
+
 
 module.exports = router;
