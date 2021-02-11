@@ -2,11 +2,40 @@
   <thead>
     <tr>
       {{!-- <th scope="col">#</th> --}}
-      <th scope="col">Фамилия, Имя</th>
-      <th scope="col">Дата старта</th>
-      <th scope="col">Дата рождения</th>
-      <th scope="col">Источник</th>
-      <th scope="col">Формат обучения</th>
+      <th scope="col"><a href="/admin/sortByName/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByName/down"><i
+            class="fas fa-caret-down"></i></a> Фамилия,
+        Имя</th>
+      <th scope="col"><a href="/admin/sortByDate/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByDate/down"><i
+            class="fas fa-caret-down"></i></a> Дата старта</th>
+      <th scope="col"><a href="/admin/sortByBirthday/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByBirthday/down"><i
+            class="fas fa-caret-down"></i></a> Дата рождения</th>
+      <th scope="col">Источник
+        <form action="/admin/filterByKnow" method="POST">
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Все</option>
+            <option name="howKnow1" value="instagram">instagram</option>
+            <option name="howKnow2" value="facebook">facebook</option>
+            <option name="howKnow3" value="vkontakte">vkontakte</option>
+            <option name="howKnow4" value="google">google</option>
+            <option name="howKnow5" value="yandex">yandex</option>
+            <option name="howKnow6" value="статья">статья</option>
+            <option name="howKnow7" value="друзья">друзья</option>
+            <option name="howKnow8" value="АйтиБорода">АйтиБорода</option>
+            <option name="howKnow9" value="Другое">Другое</option>
+          </select>
+        </form>
+      </th>
+      <th scope="col">Формат обучения
+        <form action="/admin/filterByFormat" method="POST">
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Все</option>
+            <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
+            <option value="JavaScript - Санкт-Петербург - очное">JavaScript - Санкт-Петербург - очное</option>
+            <option value="JavaScript - online">JavaScript - online</option>
+            <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
+          </select>
+        </form>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +44,7 @@
       {{!-- <th scope="row">{{}}</th> --}}
       <td>{{this.lastName}}, {{this.firstName}}</td>
       <td>{{this.receiptDate}}</td>
-       <td>{{this.birthday}}</td>
+      <td>{{this.birthday}}</td>
       <td>{{this.howKnow}}</td>
       <td>{{this.format}}</td>
     </tr>

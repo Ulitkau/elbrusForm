@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Admin = require('../model/admin');
 const Student = require('../model/student');
 const bcrypt = require('bcrypt');
+
 const check = require('../middleware/check')
 
 router.get('/', (req, res) => {
