@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Student = require('../model/student');
 
 router.get('/', (req, res) => {
-  res.render('start');
+  res.render('students/start');
 });
 
 router.get('/students/new', (req, res) => {
