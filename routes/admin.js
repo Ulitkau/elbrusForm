@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Admin = require('../model/admin');
+const Student = require('../model/student');
 const bcrypt = require('bcrypt');
 const Student = require('../model/student');
 
@@ -54,6 +55,5 @@ router.get('/students/:id', async (req, res) => {
   const student = await Student.findById(req.params.id);
   res.render('admin/profileStudent', { student });
 });
-
 
 module.exports = router;
