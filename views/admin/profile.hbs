@@ -34,7 +34,8 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Дата и год рождения</label>
-          <input type="date" name="birthday" min="1900-01-01" max="2025-01-01" {{!-- required --}} class="form-control">
+          <input type="date" name="birthday" min="1900-01-01" max="2025-01-01" {{!-- required --}}
+            value="{{editbirthday}}" class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label">Из какого ты города?</label>
@@ -55,89 +56,36 @@
         </div>
         <div class="mb-3">
           <label class="list-group-item">Почему ты решил(а) сменить сферу работы?</label>
-          <div class="list-group">
-            <label class="list-group-item">
-              <input class="form-check-input me-1" name="reason1" type="checkbox"
-                value="Всегда мечтал(а) стать разработчиком">
-              Всегда мечтал(а) стать разработчиком
-            </label>
-            <label class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" name="reason2" value="В IT много платят">
-              В IT много платят
-            </label>
-            <label class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" name="reason3"
-                value="Хочу переехать в другой город/страну">
-              Хочу переехать в другой город/страну
-            </label>
-            <label class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" name="reason4" value="Настояли близкие">
-              Настояли близкие
-            </label>
-            <label class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" name="reason5" value="Другое">
-              Другое
-              <input class="form-input" type="text" name="reason6" placeholder="Ваш ответ">
-            </label>
+          <div class="form-floating">
+            <input class="form-control" name="reason" disabled value="{{student.reason}}">
+            <label for="floatingTextarea">список</label>
           </div>
-          <div class="mb-3">
-            <label class="list-group-item">Как ты узнал(а) про нас? </label>
-            <div class="list-group">
-              <label class="list-group-item">
-                <input class="form-check-input me-1" name="howKnow1" type="checkbox" value="instagram">
-                instagram
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" name="howKnow2" value="facebook">
-                facebook
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" name="howKnow3" value="vkontakte">
-                vkontakte
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" name="howKnow4" value="google">
-                google
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" name="howKnow5" type="checkbox" value="yandex">
-                yandex
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" name="howKnow6" value="статья">
-                статья
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" name="howKnow7" value="друзья">
-                друзья
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" name="howKnow8" value="АйтиБорода">
-                АйтиБорода
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" name="howKnow9" value="Другое">
-                Другое
-                <input class="form-input" type="text" name="howKnow10" placeholder="Ваш ответ">
-              </label>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Формат обучения</label>
-              <select name="format" class="form-select" aria-label="Default select example">
-                <option selected disabled>Выберите формат обучения</option>
-                <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
-                <option value="JavaScript - Санкт-Петербург - очное">JavaScript - Санкт-Петербург - очное</option>
-                <option value="JavaScript - online">JavaScript - online</option>
-                <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Дата поступления</label>
-              <input type="date" name="receiptDate" min="2017-01-01" max="2025-01-01" {{!-- required --}}
-                value="{{student.receiptDate}}" class="form-control">
 
-            </div>
-            <button type="submit" class="btn btn-danger">Подтвердить изменения</button>
+        </div>
+        <div class="mb-3">
+          <label class="list-group-item">Источники</label>
+          <div class="form-floating">
+            <input class="form-control" name="howKnow" disabled value="{{student.howKnow}}">
+            <label for="floatingTextarea">список</label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Формат обучения</label>
+          <select name="format" class="form-select" aria-label="Default select example">
+            <option selected disabled>Выберите формат обучения</option>
+            <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
+            <option value="JavaScript - Санкт-Петербург - очное">JavaScript - Санкт-Петербург - очное</option>
+            <option value="JavaScript - online">JavaScript - online</option>
+            <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Дата поступления</label>
+          <input type="date" name="receiptDate" min="2017-01-01" max="2025-01-01" {{!-- required --}}
+            value="{{editReceiptDate}}" class="form-control">
+
+        </div>
+        <button type="submit" class="btn btn-danger">Подтвердить изменения</button>
       </form>
     </div>
   </div>
