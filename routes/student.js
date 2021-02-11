@@ -43,14 +43,14 @@ router.post('/students', async (req, res) => {
   //   login: 'kechko02@gmail.com',
   //   password: hashedPasswords
   // });
-  console.log(newStudent);
+  // console.log(newStudent);
   try {
     await newStudent.save();
     // await admin.save();
   } catch (error) {
     return res.render('error', {
       message: 'Не удалось добавить запись в базу данных.',
-      error: {}
+      error: error
     });
   }
 
