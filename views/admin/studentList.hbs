@@ -2,13 +2,13 @@
   <thead>
     <tr>
       {{!-- <th scope="col">#</th> --}}
-      <th scope="col"><a href="/admin/sortByName/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByName/down"><i
-            class="fas fa-caret-down"></i></a> Фамилия,
+      <th scope="col"><a href="/admin/sortByName/upper"><i class="fas fa-caret-up"></i></a> <a
+          href="/admin/sortByName/down"><i class="fas fa-caret-down"></i></a> Фамилия,
         Имя</th>
-      <th scope="col"><a href="/admin/sortByDate/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByDate/down"><i
-            class="fas fa-caret-down"></i></a> Дата старта</th>
-      <th scope="col"><a href="/admin/sortByBirthday/upper"><i class="fas fa-caret-up"></i></a> <a href="/admin/sortByBirthday/down"><i
-            class="fas fa-caret-down"></i></a> Дата рождения</th>
+      <th scope="col"><a href="/admin/sortByDate/upper"><i class="fas fa-caret-up"></i></a> <a
+          href="/admin/sortByDate/down"><i class="fas fa-caret-down"></i></a> Дата старта</th>
+      <th scope="col"><a href="/admin/sortByBirthday/upper"><i class="fas fa-caret-up"></i></a> <a
+          href="/admin/sortByBirthday/down"><i class="fas fa-caret-down"></i></a> Дата рождения</th>
       <th scope="col">Источник
         <form action="/admin/filterByKnow" method="POST">
           <select class="form-select form-select-sm" aria-label=".form-select-sm example">
@@ -23,6 +23,7 @@
             <option name="howKnow8" value="АйтиБорода">АйтиБорода</option>
             <option name="howKnow9" value="Другое">Другое</option>
           </select>
+          <button type="submit" class="btn btn-success"><i class="far fa-share-square"></i></button>
         </form>
       </th>
       <th scope="col">Формат обучения
@@ -34,8 +35,10 @@
             <option value="JavaScript - online">JavaScript - online</option>
             <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
           </select>
+          <button type="submit" class="btn btn-success"><i class="far fa-share-square"></i></button>
         </form>
       </th>
+      <th>Подробнее</th>
     </tr>
   </thead>
   <tbody>
@@ -47,6 +50,11 @@
       <td>{{this.birthday}}</td>
       <td>{{this.howKnow}}</td>
       <td>{{this.format}}</td>
+      <td>
+        <form action="/admin/students/{{this._id}}" method="GET">
+          <button type="submit" class="btn btn-success"><i class="fas fa-info"></i></button>
+        </form>
+      </td>
     </tr>
     {{/each}}
   </tbody>
