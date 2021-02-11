@@ -9,6 +9,7 @@ const FileStore = require('session-file-store')(session);
 const studentRouter = require('./routes/student');
 const adminRouter = require('./routes/admin')
 
+
 const app = express();
 const port = process.env.PORT ?? 3000;
 
@@ -20,6 +21,7 @@ app.set('views', path.join(process.env.PWD, 'views'));
 app.use(express.static(path.join(process.env.PWD, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(logger('dev'));
 
 // подключаем сессию
@@ -53,5 +55,6 @@ app.listen(port, () => {
     console.log('Подлючение к базе данных успешно.');
   });
 });
+
 
 

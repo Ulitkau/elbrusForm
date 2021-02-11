@@ -4,7 +4,9 @@ const bcrypt = require('bcrypt');
 const Student = require('../model/student');
 
 router.get('/', (req, res) => {
+
   return res.render('admin/login');
+
 });
 
 // ручка обрабатывающая вход
@@ -17,6 +19,7 @@ router.post('/', async (req, res) => {
   }
 
   req.session.AdminID = adminUser._id;
+
 
   return res.redirect('students');
 
@@ -51,5 +54,6 @@ router.get('/students/:id', async (req, res) => {
   const student = await Student.findById(req.params.id);
   res.render('admin/profileStudent', { student });
 });
+
 
 module.exports = router;
