@@ -2,19 +2,12 @@ const router = require('express').Router();
 const Admin = require('../model/admin');
 const Student = require('../model/student');
 const bcrypt = require('bcrypt');
+const Student = require('../model/student');
 
-router.get('/', async (req, res) => {
-  let students = await Student.find().lean();
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  students = students.map((el) => {
-    return {
-      ...el,
-      receiptDate: new Date(el.receiptDate).toLocaleString('ru-RU', options),
-      birthday: new Date(el.receiptDate).toLocaleString('ru-RU', options),
-    };
-  });
-  return res.render('admin/adminList', { students });
-  // return res.render('admin/login', { title: 'Вход' });
+router.get('/', (req, res) => {
+
+  return res.render('admin/login');
+
 });
 
 // ручка обрабатывающая вход
@@ -28,7 +21,39 @@ router.post('/', async (req, res) => {
 
   req.session.AdminID = adminUser._id;
 
-  return res.render('admin/adminList', { title: 'список студентов' });
+
+  return res.redirect('students');
+
+});
+
+// показывает список студентов
+router.get('/students', async (req, res) => {
+  const student = await Student.find();
+  res.render('admin/adminList', { student });
+});
+
+// sortByName сортировка по фамилии
+router.get('/sortByName', async (req, res) => {
+  const dataLastName = await Student.find().sort('lastName');
+  res.render('admin/studentList', { title: 'список студентов', dataLastName });
+});
+
+// sortByDate сортировка по дате поступления
+router.get('/sortByDate', async (req, res) => {
+  const dataReceiptDate = await Student.find().sort('receiptDate');
+  res.render('admin/studentList', { title: 'список студентов', dataReceiptDate });
+});
+
+// sortByBirthday сортировка по дню рождения
+router.get('/sortByBirthday', async (req, res) => {
+  const dataBirthday = await Student.find().sort('birthday');
+  res.render('admin/studentList', { title: 'список студентов', dataBirthday });
+});
+
+// вывод отдельной анкеты студента
+router.get('/students/:id', async (req, res) => {
+  const student = await Student.findById(req.params.id);
+  res.render('admin/profileStudent', { student });
 });
 
 module.exports = router;
