@@ -2,6 +2,7 @@
   <thead>
     <tr>
       {{!-- <th scope="col">#</th> --}}
+
       <th scope="col"><a href="/admin/students/sortByName/upper"><i class="fas fa-caret-up"></i></a> <a
           href="/admin/students/sortByName/down"><i class="fas fa-caret-down"></i></a> Фамилия,
         Имя</th>
@@ -23,6 +24,7 @@
             <option name="howKnow8" value="АйтиБорода">АйтиБорода</option>
             <option name="howKnow9" value="Другое">Другое</option>
           </select>
+          <button type="submit" class="btn btn-success"><i class="far fa-share-square"></i></button>
         </form>
       </th>
       <th scope="col">Формат обучения
@@ -34,8 +36,10 @@
             <option value="JavaScript - online">JavaScript - online</option>
             <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
           </select>
+          <button type="submit" class="btn btn-success"><i class="far fa-share-square"></i></button>
         </form>
       </th>
+      <th>Подробнее</th>
     </tr>
   </thead>
   <tbody>
@@ -47,6 +51,11 @@
       <td>{{this.birthday}}</td>
       <td>{{this.howKnow}}</td>
       <td>{{this.format}}</td>
+      <td>
+        <form action="/admin/students/{{this._id}}" method="GET">
+          <button type="submit" class="btn btn-success"><i class="fas fa-info"></i></button>
+        </form>
+      </td>
     </tr>
     {{/each}}
   </tbody>

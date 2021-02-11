@@ -1,0 +1,144 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-6">
+      <form method="POST" action="/students/{{student._id}}">
+        <div class="mb-3">
+          <label class="form-label">Адрес электронной почты</label>
+          <input type="email" name="email" value="{{student.email}}" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Твой аккаунт в github</label>
+          <input type="text" name="github" value="{{student.github}}" class="form-control" value="https://github.com/"
+            {{!-- required --}}>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Имя</label>
+          <input type="text" name="firstName" value="{{student.firstName}}" class="form-control" {{!-- {{!-- required
+            --}} --}}>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Фамилия</label>
+          <input type="text" name="lastName" value="{{student.lastName}}" class="form-control" {{!-- required --}}>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Номер телефона</label>
+          <input type="tel" name="number" value="{{student.number}}" class="form-control" {{!-- required --}}>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ссылка на социальные сети</label>
+          <input type="text" name="social" value="{{student.social}}" class="form-control" {{!-- required --}}>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Контакт близкого человека, с которым можно связаться в экстренном случае</label>
+          <input type="text" name="closeContact" value="{{student.closeContact}}" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Дата и год рождения</label>
+          <input type="date" name="birthday" min="1900-01-01" max="2025-01-01" {{!-- required --}} class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Из какого ты города?</label>
+          <input type="text" name="city" value="{{student.city}}" {{!-- required --}} class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Какое у тебя образование?</label>
+          <input type="text" name="education" value="{{student.education}}" {{!-- required --}} class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Чем ты занимался до bootcamp? </label>
+          <input type="text" name="employmentBefore" value="{{student.employmentBefore}}" {{!-- required --}}
+            class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Нуждаешься ли ты в специальных условиях обучения по здоровью?</label>
+          <input type="text" name="specialConditions" value="{{student.specialConditions}}" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="list-group-item">Почему ты решил(а) сменить сферу работы?</label>
+          <div class="list-group">
+            <label class="list-group-item">
+              <input class="form-check-input me-1" name="reason1" type="checkbox"
+                value="Всегда мечтал(а) стать разработчиком">
+              Всегда мечтал(а) стать разработчиком
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" name="reason2" value="В IT много платят">
+              В IT много платят
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" name="reason3"
+                value="Хочу переехать в другой город/страну">
+              Хочу переехать в другой город/страну
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" name="reason4" value="Настояли близкие">
+              Настояли близкие
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" name="reason5" value="Другое">
+              Другое
+              <input class="form-input" type="text" name="reason6" placeholder="Ваш ответ">
+            </label>
+          </div>
+          <div class="mb-3">
+            <label class="list-group-item">Как ты узнал(а) про нас? </label>
+            <div class="list-group">
+              <label class="list-group-item">
+                <input class="form-check-input me-1" name="howKnow1" type="checkbox" value="instagram">
+                instagram
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" name="howKnow2" value="facebook">
+                facebook
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" name="howKnow3" value="vkontakte">
+                vkontakte
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" name="howKnow4" value="google">
+                google
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" name="howKnow5" type="checkbox" value="yandex">
+                yandex
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" name="howKnow6" value="статья">
+                статья
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" name="howKnow7" value="друзья">
+                друзья
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" name="howKnow8" value="АйтиБорода">
+                АйтиБорода
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" name="howKnow9" value="Другое">
+                Другое
+                <input class="form-input" type="text" name="howKnow10" placeholder="Ваш ответ">
+              </label>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Формат обучения</label>
+              <select name="format" class="form-select" aria-label="Default select example">
+                <option selected disabled>Выберите формат обучения</option>
+                <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
+                <option value="JavaScript - Санкт-Петербург - очное">JavaScript - Санкт-Петербург - очное</option>
+                <option value="JavaScript - online">JavaScript - online</option>
+                <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Дата поступления</label>
+              <input type="date" name="receiptDate" min="2017-01-01" max="2025-01-01" {{!-- required --}}
+                value="{{student.receiptDate}}" class="form-control">
+
+            </div>
+            <button type="submit" class="btn btn-danger">Подтвердить изменения</button>
+      </form>
+    </div>
+  </div>
+</div>
