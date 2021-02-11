@@ -3,11 +3,12 @@ const Admin = require('../model/admin');
 const Student = require('../model/student');
 const bcrypt = require('bcrypt');
 
+
 router.get('/', async (req, res) => {
   const students = await Student.find();
   return res.render('admin/adminList', { students });
   // return res.render('admin/login', { title: 'Вход' });
-});
+
 
 
 // ручка обрабатывающая вход
@@ -20,9 +21,11 @@ router.post('/', async (req, res) => {
   }
   
   req.session.AdminID = adminUser._id;
-  
+
   return res.render('admin/adminList', { title: 'список студентов' });
 
 });
+
+
 
 module.exports = router;
