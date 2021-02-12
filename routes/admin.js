@@ -164,7 +164,7 @@ router.get('/students/select/:id/delete', check, async (req, res) => {
 router.post('/students/select/:id/edit', check, async (req, res) => {
   const idStudent = req.params.id;
   try {
-    await Student.findByIdAndUpdate({ idStudent }, {
+    await Student.findByIdAndUpdate(idStudent, {
       email: req.body.email,
       github: req.body.github,
       firstName: req.body.firstName,
@@ -172,15 +172,12 @@ router.post('/students/select/:id/edit', check, async (req, res) => {
       number: req.body.number,
       social: req.body.social,
       closeContact: req.body.closeContact,
-      birthday: req.body.birthday,
+      birthday: new Date(req.body.birthday),
       city: req.body.city,
       education: req.body.education,
       employmentBefore: req.body.employmentBefore,
       specialConditions: req.body.specialConditions,
-      reason: reasons,
-      howKnow: howknow,
-      format: req.body.format,
-      receiptDate: req.body.receiptDate,
+      receiptDate: new Date(req.body.receiptDate),
     })
   } catch (err) {
     return res.status(500).end();
