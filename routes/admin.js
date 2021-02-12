@@ -151,7 +151,7 @@ router.post('/students/filterByFormat', check, async (req, res) => {
 });
 
 // удаление анкеты студента
-router.get('/students/select/:id/delete', async (req, res) => {
+router.get('/students/select/:id/delete', check, async (req, res) => {
   try {
     await Student.findByIdAndDelete(req.params.id);
   } catch (err) {
@@ -160,6 +160,34 @@ router.get('/students/select/:id/delete', async (req, res) => {
 
   return res.redirect('/admin/students');
 });
+
+router.post('/students/select/:id/edit', check, async (req, res) => {
+  const idStudent = req.params.id;
+  try {
+    await Student.findByIdAndUpdate({ idStudent }, {
+      email: req.body.email,
+      github: req.body.github,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      number: req.body.number,
+      social: req.body.social,
+      closeContact: req.body.closeContact,
+      birthday: req.body.birthday,
+      city: req.body.city,
+      education: req.body.education,
+      employmentBefore: req.body.employmentBefore,
+      specialConditions: req.body.specialConditions,
+      reason: reasons,
+      howKnow: howknow,
+      format: req.body.format,
+      receiptDate: req.body.receiptDate,
+    })
+  } catch (err) {
+    return res.status(500).end();
+  }
+
+  return res.redirect('/admin/students');
+})
 
 // выход из учётки администратора, удаление куки
 router.get('/logout', (req, res) => {
