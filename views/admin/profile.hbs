@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-sm-6">
-      <form method="POST" action="/students/{{student._id}}">
+      <form method="POST" action="/students/{{student._id}}/edit">
         <div class="mb-3">
           <label class="form-label">Адрес электронной почты</label>
           <input type="email" name="email" value="{{student.email}}" class="form-control">
@@ -70,21 +70,22 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Формат обучения</label>
-          <select name="format" class="form-select" aria-label="Default select example">
-            <option selected disabled>Выберите формат обучения</option>
-            <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
-            <option value="JavaScript - Санкт-Петербург - очное">JavaScript - Санкт-Петербург - очное</option>
-            <option value="JavaScript - online">JavaScript - online</option>
-            <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Дата поступления</label>
-          <input type="date" name="receiptDate" min="2017-01-01" max="2025-01-01" {{!-- required --}}
-            value="{{editReceiptDate}}" class="form-control">
-
-        </div>
-        <button type="submit" class="btn btn-danger">Подтвердить изменения</button>
+          <div class="form-floating">
+            <input class="form-control" disabled value="{{student.format}}">
+            <label for="floatingTextarea"></label>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Дата поступления</label>
+            <input type="date" name="receiptDate" min="2017-01-01" max="2025-01-01" {{!-- required --}}
+              value="{{editReceiptDate}}" class="form-control">
+          </div>
+          <div class="mb-3 d-flex justify-content-around">
+            <a href="/admin/students/select/{{student._id}}/delete" class="btn btn-danger" role="button"
+              data-bs-toggle="button">Удалить профиль</a>
+            <a href="/admin/students" class="btn btn-outline-secondary" role="button" data-bs-toggle="button">Вернуться
+              к списку</a>
+            <button type="submit" class="btn btn-success">Подтвердить изменения</button>
+          </div>
       </form>
     </div>
   </div>
