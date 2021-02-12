@@ -1,0 +1,20 @@
+body {
+  background-color: ;
+}
+.navbar {
+  background-color: #4520ab;
+  color: white;
+}
+.navbar a {
+  color: #ffbc5b;
+}
+.centerBox {
+  position: absolute;
+  width: 300px;
+  height: 4000px;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -150px;
+}
+
