@@ -39,9 +39,6 @@ router.get('/students', check, async (req, res) => {
   return res.render('admin/studentList', { students });
 });
 
-// return res.render('admin/login', { title: 'Вход' })
-
-
 
 // sortByName сортировка по фамилии
 router.get('/students/sortByName/:direction', check, async (req, res) => {
@@ -155,7 +152,6 @@ router.post('/students/filterByFormat', check, async (req, res) => {
 
 // удаление анкеты студента
 router.get('/students/select/:id/delete', async (req, res) => {
-  console.log(req.params.id);
   try {
     await Student.findByIdAndDelete(req.params.id);
   } catch (err) {
