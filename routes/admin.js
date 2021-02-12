@@ -151,6 +151,8 @@ router.post('/students/filterByFormat', check, async (req, res) => {
 
 // удаление анкеты студента
 router.get('/students/select/:id/delete', check, async (req, res) => {
+  const st = await Student.findById(req.params.id);
+  console.log(st);
   try {
     await Student.findByIdAndDelete(req.params.id);
   } catch (err) {
