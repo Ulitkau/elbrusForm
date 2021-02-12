@@ -105,9 +105,10 @@ router.get('/students/sortByBirthday/:direction', check, async (req, res) => {
 
 // вывод отдельной анкеты студента
 router.get('/students/select/:id', check, async (req, res) => {
-  let student = [await Student.findById(req.params.id)];
-  console.log(student);
-  res.render('admin/profile', { student });
+  let student = await Student.findById(req.params.id);
+  editReceiptDate = new Date(student.receiptDate).toISOString().substring(0, 10);
+  editBirthday = new Date(student.birthday).toISOString().substring(0, 10);
+  res.render('admin/profile', { student, editReceiptDate, editBirthday });
 });
 
 router.post('/students/filterByKnow', check, async (req, res) => {
