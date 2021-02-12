@@ -1,4 +1,17 @@
-<div class="container">
+<div class="container-fluid" id="header">
+  <nav class="navbar navbar-expand-lg  fixed-top" style="background-color: #4520ab;">
+    <a class="navbar-brand" href="#">
+
+      <a href="/admin"></a>
+      <img
+        src="data:image/png;base64,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"
+        width="100" height="100" class="d-inline-block align-top" alt="" style="margin-left: 500px">
+    </a>
+    <h1 style="color: #ffbc5b;margin-left: 400px">Анкета Студента</h1>
+    </a>
+  </nav>
+</div>
+<div class="container" style="margin-top:200px">
   <div class="row justify-content-md-center">
     <div class="col-sm-6">
       <form method="POST" action="/students">
@@ -9,24 +22,23 @@
         <div class="mb-3">
           <label class="form-label">Твой аккаунт в github</label>
           <input type="text" name="github" placeholder="Мой ответ" class="form-control" value="https://github.com/"
-            {{!-- required --}}>
+            required>
         </div>
         <div class="mb-3">
           <label class="form-label">Имя</label>
-          <input type="text" name="firstName" placeholder="Мой ответ" class="form-control" {{!-- {{!-- required --}}
-            --}}>
+          <input type="text" name="firstName" placeholder="Мой ответ" class="form-control" {{!-- required --}}>
         </div>
         <div class="mb-3">
           <label class="form-label">Фамилия</label>
-          <input type="text" name="lastName" placeholder="Мой ответ" class="form-control" {{!-- required --}}>
+          <input type="text" name="lastName" placeholder="Мой ответ" class="form-control" required>
         </div>
         <div class="mb-3">
           <label class="form-label">Номер телефона</label>
-          <input type="tel" name="number" placeholder="Мой ответ" class="form-control" {{!-- required --}}>
+          <input type="tel" name="number" placeholder="Мой ответ" class="form-control" required>
         </div>
         <div class="mb-3">
           <label class="form-label">Ссылка на социальные сети</label>
-          <input type="text" name="social" placeholder="Мой ответ" class="form-control" {{!-- required --}}>
+          <input type="text" name="social" placeholder="Мой ответ" class="form-control" required>
         </div>
         <div class="mb-3">
           <label class="form-label">Контакт близкого человека, с которым можно связаться в экстренном случае</label>
@@ -34,19 +46,19 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Дата и год рождения</label>
-          <input type="date" name="birthday" min="1900-01-01" max="2025-01-01" {{!-- required --}} class="form-control">
+          <input type="date" name="birthday" min="1900-01-01" max="2025-01-01" required class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label">Из какого ты города?</label>
-          <input type="text" name="city" placeholder="Мой ответ" {{!-- required --}} class="form-control">
+          <input type="text" name="city" placeholder="Мой ответ" required class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label">Какое у тебя образование?</label>
-          <input type="text" name="education" placeholder="Мой ответ" {{!-- required --}} class="form-control">
+          <input type="text" name="education" placeholder="Мой ответ" required class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label">Чем ты занимался до bootcamp? </label>
-          <input type="text" name="employmentBefore" placeholder="Мой ответ" {{!-- required --}} class="form-control">
+          <input type="text" name="employmentBefore" placeholder="Мой ответ" required class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label">Нуждаешься ли ты в специальных условиях обучения по здоровью?</label>
@@ -132,11 +144,10 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Дата поступления</label>
-              <input type="date" name="receiptDate" min="2017-01-01" max="2025-01-01" {{!-- required --}}
-                class="form-control">
+              <input type="date" name="receiptDate" min="2017-01-01" max="2025-01-01" required class="form-control">
 
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
       </form>
 
 

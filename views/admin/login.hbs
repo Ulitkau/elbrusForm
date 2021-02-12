@@ -1,19 +1,21 @@
+<div class="container" style="margin: 20%">
+</div>
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-sm-6">
 
       <h1 class="text-center">{{title}}</h1>
       <form class="form-signin" method="POST" action="/admin/students">
-        <img class="mb-4" src="https://elbrus-bootcamp.github.io/Elbrus-Bootcamp/sharing_logo.jpg" alt="" width="72"
-          height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Пожалуйста, авторизуйтесь</h1>
+        <img class="mb-4" src="https://elbrus-bootcamp.github.io/Elbrus-Bootcamp/sharing_logo.jpg" alt="" width="120"
+          height="120">
+        <span class="h2 mb-3 font-weight-normal">Пожалуйста, авторизуйтесь</span>
         <label for="inputEmail" class="sr-only">Электронная почта </label>
         <input type="email" id="inputEmail" class="form-control" name="login" placeholder="Email " required autofocus>
         <label for="inputPassword" class="sr-only">Пароль</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
         <div class="checkbox mb-3">
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="logButton">Войти</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
       </form>
     </div>

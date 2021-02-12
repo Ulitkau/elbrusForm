@@ -12,23 +12,26 @@
     </button>
   </div>
 </nav>
-<div class="container" style="margin: 50px">
+<div class="container" style="margin: 80px">
 </div>
 <table class="table table-hover">
   <thead>
     <tr>
       {{!-- <th scope="col">#</th> --}}
 
-      <th scope="col"><a href="/admin/students/sortByName/upper"><i class="fas fa-caret-up"></i></a> <a
-          href="/admin/students/sortByName/down"><i class="fas fa-caret-down"></i></a> Фамилия,
-        Имя</th>
-      <th scope="col"><a href="/admin/students/sortByDate/upper"><i class="fas fa-caret-up"></i></a> <a
-          href="/admin/students/sortByDate/down"><i class="fas fa-caret-down"></i></a> Дата старта</th>
-      <th scope="col"><a href="/admin/students/sortByBirthday/upper"><i class="fas fa-caret-up"></i></a> <a
-          href="/admin/students/sortByBirthday/down"><i class="fas fa-caret-down"></i></a> Дата рождения</th>
+      <th scope="col"> Фамилия <br> Имя <br><a href="/admin/students/sortByName/upper"><i
+            class="fas fa-caret-up"></i></a>
+        <a href="/admin/students/sortByName/down"><i class="fas fa-caret-down"></i></a>
+      </th>
+      <th scope="col"> Дата <br>старта <br><a href="/admin/students/sortByDate/upper"><i
+            class="fas fa-caret-up"></i></a> <a href="/admin/students/sortByDate/down"><i
+            class="fas fa-caret-down"></i></a></th>
+      <th scope="col">Дата рождения<br><a href="/admin/students/sortByBirthday/upper"><i
+            class="fas fa-caret-up"></i></a> <a href="/admin/students/sortByBirthday/down"><i
+            class="fas fa-caret-down"></i></a> </th>
       <th scope="col">
         <form action="/admin/students/filterByKnow" method="POST">
-          <button type="submit" class="btn btn-success"> <i class="fas fa-filter"> Источник</i></button>
+          <button type="submit" class="btn btn" id="howKnow"> <i class="fas fa-filter"> Источник</i></button>
           <select class="form-select form-select-sm" name="howKnow" aria-label=".form-select-sm example">
             <option selected>Все</option>
             <option value="instagram">Instagram</option>
@@ -46,7 +49,7 @@
       </th>
       <th scope="col">
         <form action="/admin/students/filterByFormat" method="POST">
-          <button type="submit" class="btn btn-success"> <i class="fas fa-filter"> Формат</i></button>
+          <button type="submit" class="btn btn" id="format"> <i class="fas fa-filter"> Формат </i></button>
           <select class="form-select form-select-sm" name="format" aria-label=".form-select-sm example">
             <option selected>Все</option>
             <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
@@ -71,7 +74,7 @@
       <td>{{this.format}}</td>
       <td>
         <form action="/admin/students/select/{{this._id}}" method="GET">
-          <button type="submit" class="btn btn-success"><i class="fas fa-info"></i></button>
+          <button type="submit" class="btn "><i class="fas fa-info-circle"></i></button>
         </form>
       </td>
     </tr>
