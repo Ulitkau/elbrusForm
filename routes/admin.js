@@ -3,7 +3,8 @@ const Admin = require('../model/admin');
 const Student = require('../model/student');
 const bcrypt = require('bcrypt');
 
-const check = require('../middleware/check')
+const check = require('../middleware/check');
+const { findByIdAndDelete } = require('../model/admin');
 
 router.get('/', (req, res) => {
   if (req.session?.AdminID) {
@@ -111,6 +112,7 @@ router.get('/students/select/:id', check, async (req, res) => {
   res.render('admin/profile', { student, editReceiptDate, editBirthday });
 });
 
+
 router.post('/students/filterByKnow', check, async (req, res) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   let filterDB;
@@ -151,6 +153,19 @@ router.post('/students/filterByFormat', check, async (req, res) => {
   return res.render('admin/studentList', { students: filterDB })
 });
 
+// удаление анкеты студента
+router.get('/students/select/:id/delete', async (req, res) => {
+  console.log(req.params.id);
+  try {
+    await Student.findByIdAndDelete(req.params.id);
+  } catch (err) {
+    return res.status(500).end();
+  }
+
+  return res.redirect('/admin/students');
+});
+
+// выход из учётки администратора, удаление куки
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('sid');
