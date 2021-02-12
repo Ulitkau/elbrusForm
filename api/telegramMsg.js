@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 module.exports.sendMsg = (firstName, lastName, number, format) => {
   // //токен и id чата берутся из config.json
   const config = require('../config/config.json');
@@ -21,14 +22,14 @@ module.exports.sendMsg = (firstName, lastName, number, format) => {
   //делаем запрос
   http.post(
     `https://api.telegram.org/bot${config.telegram.token}/sendMessage?chat_id=${config.telegram.chat}&parse_mode=html&text=${msg}`,
-    function (error, response, body) {
+    function (error, response) {
       //не забываем обработать ответ
       // console.log('error:', error);
       // console.log('statusCode:', response && response.statusCode);
-      console.log('body:', body);
+      // console.log('body:', body);
       let otvet = 'Ваше сообщение успешно отправлено!';
       if (response.statusCode === 200) {
-        console.log('Ok telegramm', otvet);
+      console.log('Ok telegramm', otvet);
         //res.render('index', { otvet });
         // res.status(200).json({ status: 'ok', message: 'Успешно отправлено!' });
       }
