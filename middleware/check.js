@@ -2,7 +2,7 @@ function checkAuth(req, res, next) {
   if (req.session?.AdminID) {
     next()
   } else {
-    res.redirect('/')
+    res.redirect('/admin')
   }
 };
 
