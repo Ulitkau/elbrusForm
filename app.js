@@ -9,7 +9,6 @@ const FileStore = require('session-file-store')(session);
 // пути к ручкам
 const studentRouter = require('./routes/student');
 const adminRouter = require('./routes/admin');
-const testRouter = require('./routes/test/test')
 
 
 const app = express();
@@ -41,7 +40,6 @@ app.use(session(sessionConfig));
 // прописываем маршруты
 app.use('/', studentRouter);
 app.use('/admin', adminRouter);
-app.use('/test', testRouter);
 
 // запуск сервера
 app.listen(port, () => {
