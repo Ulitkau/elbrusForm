@@ -4,7 +4,6 @@ const Student = require('../model/student');
 const bcrypt = require('bcrypt');
 
 const check = require('../middleware/check');
-const { findByIdAndDelete } = require('../model/admin');
 
 router.get('/', (req, res) => {
   if (req.session?.AdminID) {
