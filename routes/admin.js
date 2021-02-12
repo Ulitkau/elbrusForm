@@ -4,7 +4,6 @@ const Student = require('../model/student');
 const bcrypt = require('bcrypt');
 
 const check = require('../middleware/check');
-const { findByIdAndDelete } = require('../model/admin');
 
 router.get('/', (req, res) => {
   if (req.session?.AdminID) {
@@ -155,7 +154,6 @@ router.post('/students/filterByFormat', check, async (req, res) => {
 
 // удаление анкеты студента
 router.get('/students/select/:id/delete', async (req, res) => {
-  console.log(req.params.id);
   try {
     await Student.findByIdAndDelete(req.params.id);
   } catch (err) {
