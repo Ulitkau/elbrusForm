@@ -108,7 +108,6 @@ router.get('/students/select/:id', check, async (req, res) => {
   let student = await Student.findById(req.params.id);
   editReceiptDate = new Date(student.receiptDate).toISOString().substring(0, 10);
   editBirthday = new Date(student.birthday).toISOString().substring(0, 10);
-  console.log(editReceiptDate);
   res.render('admin/profile', { student, editReceiptDate, editBirthday });
 });
 
