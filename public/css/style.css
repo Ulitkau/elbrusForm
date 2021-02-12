@@ -8,13 +8,35 @@ body {
 .navbar a {
   color: #ffbc5b;
 }
-.centerBox {
+/* .centerBox {
   position: absolute;
   width: 300px;
   height: 4000px;
   top: 50%;
   left: 50%;
-  margin-top: -200px;
+  margin-top: -400px;
   margin-left: -150px;
+} */
+
+#logButton{
+  background-color: #4520ab;;
+}
+#footer{
+  background-color: #4520ab;
+  color: white;
+}
+.info-circle{
+ color:  white;
+}
+#format{
+  background-color: #4520ab;
+  color: #ffbc5b;
+}
+#howKnow{
+  background-color: #4520ab;
+  color: #ffbc5b;
 }
 
+#submit{
+  background-color: #4520ab;;
+}
