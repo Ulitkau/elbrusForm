@@ -1,3 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/admin/students">Главная</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/admin/logout">Выйти</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+<div class="container" style="margin: 50px">
+</div>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -10,8 +26,9 @@
           href="/admin/students/sortByDate/down"><i class="fas fa-caret-down"></i></a> Дата старта</th>
       <th scope="col"><a href="/admin/students/sortByBirthday/upper"><i class="fas fa-caret-up"></i></a> <a
           href="/admin/students/sortByBirthday/down"><i class="fas fa-caret-down"></i></a> Дата рождения</th>
-      <th scope="col">Источник
+      <th scope="col">
         <form action="/admin/students/filterByKnow" method="POST">
+          <button type="submit" class="btn btn-success"> <i class="fas fa-filter"> Источник</i></button>
           <select class="form-select form-select-sm" name="howKnow" aria-label=".form-select-sm example">
             <option selected>Все</option>
             <option value="instagram">Instagram</option>
@@ -24,11 +41,12 @@
             <option value="АйтиБорода">АйтиБорода</option>
             <option value="Другое">Другое</option>
           </select>
-          <button type="submit" class="btn btn-success"><i class="far fa-share-square"></i></button>
+
         </form>
       </th>
-      <th scope="col">Формат обучения
+      <th scope="col">
         <form action="/admin/students/filterByFormat" method="POST">
+          <button type="submit" class="btn btn-success"> <i class="fas fa-filter"> Формат</i></button>
           <select class="form-select form-select-sm" name="format" aria-label=".form-select-sm example">
             <option selected>Все</option>
             <option value="JavaScript - Москва - очное">JavaScript - Москва - очное</option>
@@ -36,7 +54,7 @@
             <option value="JavaScript - online">JavaScript - online</option>
             <option value="DataScience - Москва - очное">DataScience - Москва - очное</option>
           </select>
-          <button type="submit" class="btn btn-success"><i class="far fa-share-square"></i></button>
+
         </form>
       </th>
       <th>Подробнее</th>
