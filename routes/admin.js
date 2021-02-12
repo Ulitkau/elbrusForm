@@ -3,7 +3,8 @@ const Admin = require('../model/admin');
 const Student = require('../model/student');
 const bcrypt = require('bcrypt');
 
-const check = require('../middleware/check')
+const check = require('../middleware/check');
+const { findByIdAndDelete } = require('../model/admin');
 
 router.get('/', (req, res) => {
   if (req.session?.AdminID) {
@@ -25,7 +26,6 @@ router.post('/students', async (req, res) => {
   return res.redirect('/admin/students');
 });
 
-
 router.get('/students', check, async (req, res) => {
   let students = await Student.find().lean();
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -37,10 +37,7 @@ router.get('/students', check, async (req, res) => {
     };
   });
   return res.render('admin/studentList', { students });
-})
-
-// return res.render('admin/login', { title: 'Вход' })
-
+});
 
 
 // sortByName сортировка по фамилии
@@ -106,10 +103,12 @@ router.get('/students/sortByBirthday/:direction', check, async (req, res) => {
 
 // вывод отдельной анкеты студента
 router.get('/students/select/:id', check, async (req, res) => {
-  let student = [await Student.findById(req.params.id)];
-  console.log(student);
-  res.render('admin/profile', { student });
+  let student = await Student.findById(req.params.id);
+  editReceiptDate = new Date(student.receiptDate).toISOString().substring(0, 10);
+  editBirthday = new Date(student.birthday).toISOString().substring(0, 10);
+  res.render('admin/profile', { student, editReceiptDate, editBirthday });
 });
+
 
 router.post('/students/filterByKnow', check, async (req, res) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -149,6 +148,24 @@ router.post('/students/filterByFormat', check, async (req, res) => {
     };
   });
   return res.render('admin/studentList', { students: filterDB })
+});
+
+// удаление анкеты студента
+router.get('/students/select/:id/delete', async (req, res) => {
+  try {
+    await Student.findByIdAndDelete(req.params.id);
+  } catch (err) {
+    return res.status(500).end();
+  }
+
+  return res.redirect('/admin/students');
+});
+
+// выход из учётки администратора, удаление куки
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('sid');
+  res.redirect('/admin');
 });
 
 module.exports = router;
