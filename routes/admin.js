@@ -38,9 +38,6 @@ router.get('/students', check, async (req, res) => {
   return res.render('admin/studentList', { students });
 });
 
-// return res.render('admin/login', { title: 'Вход' })
-
-
 
 // sortByName сортировка по фамилии
 router.get('/students/sortByName/:direction', check, async (req, res) => {
