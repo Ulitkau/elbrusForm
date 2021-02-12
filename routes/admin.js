@@ -25,7 +25,6 @@ router.post('/students', async (req, res) => {
   return res.redirect('/admin/students');
 });
 
-
 router.get('/students', check, async (req, res) => {
   let students = await Student.find().lean();
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -37,7 +36,7 @@ router.get('/students', check, async (req, res) => {
     };
   });
   return res.render('admin/studentList', { students });
-})
+});
 
 // return res.render('admin/login', { title: 'Вход' })
 
@@ -149,6 +148,12 @@ router.post('/students/filterByFormat', check, async (req, res) => {
     };
   });
   return res.render('admin/studentList', { students: filterDB })
+});
+
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('sid');
+  res.redirect('/admin');
 });
 
 module.exports = router;
